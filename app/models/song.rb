@@ -2,7 +2,7 @@ require 'time'
 
 class ReleaseYearValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
-  
+
     if (record.released)
       if(value.nil?)
         record.errors.add(:release_year,"Error")
@@ -25,7 +25,7 @@ class TitleValidator < ActiveModel::EachValidator
 
     unless songs_with_same_title.count==0
       record.errors[:title] << "The same song cannot be released twice in the same year"
-    
+
     end
   end
 end
@@ -35,4 +35,3 @@ class Song < ActiveRecord::Base
   validates :title,presence:true,title:true
   validates :release_year,release_year:true
   validates :released,inclusion:{in:[true,false]}
-
